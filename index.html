@@ -156,10 +156,17 @@ input{
     border-radius:18px;
     font-weight:bold;
     transition:0.3s;
+    border:none;
+    cursor:pointer;
+    width:100%;
 }
 
 .donasi-btn:hover{
     transform:scale(1.03);
+}
+
+.share-btn{
+    background:#ec4899;
 }
 
 .dana-box{
@@ -172,10 +179,6 @@ input{
     color:#facc15;
     font-weight:bold;
     letter-spacing:1px;
-    <!-- BUTTON SHARE -->
-<button class="donasi-btn" onclick="shareWeb()" style="background:#ec4899;">
-    📤 Share Website
-</button>
 }
 
 .footer{
@@ -193,10 +196,9 @@ input{
 
     <div class="header">
 
-        <!-- GANTI logo.png dengan nama file logo kamu -->
         <img src="logo.png" class="logo">
 
-        <h1>𝕋𝕒𝕣𝕠𝕥 𝕊𝕔𝕠𝕣𝕡𝕚𝕠</h1>
+        <h1>TAROT SCORPIO</h1>
         <p>Ramalan Tarot Berdasarkan Tanggal Lahir</p>
     </div>
 
@@ -209,6 +211,7 @@ input{
 
         <div id="tanggalSection">
             <label>Masukkan Tanggal Lahir</label>
+
             <input type="number" id="tanggal" placeholder="Contoh: 12">
 
             <button id="lihatBtn" onclick="lihatRamalan()">
@@ -232,8 +235,10 @@ input{
         DANA : 0895-1323-7203
     </div>
 
-  
-    </a>
+    <!-- BUTTON SHARE -->
+    <button class="donasi-btn share-btn" onclick="shareWeb()">
+        📤 Share Website
+    </button>
 
     <div class="footer">
         © 2026 MarKie Webing Tarot
@@ -246,6 +251,7 @@ input{
 let bulanDipilih = "";
 
 function pilihBulan(bulan){
+
     bulanDipilih = bulan;
 
     document.getElementById("tanggalSection").style.display = "block";
@@ -260,7 +266,9 @@ function lihatRamalan(){
     const tanggal = parseInt(document.getElementById("tanggal").value);
 
     if(!tanggal || tanggal < 1 || tanggal > 31){
+
         alert("Masukkan tanggal lahir yang valid");
+
         return;
     }
 
@@ -270,35 +278,49 @@ function lihatRamalan(){
     if(bulanDipilih === "Oktober"){
 
         if(tanggal <= 10){
+
             kartu = "The Magician";
+
             arti = "Kamu memiliki energi besar dan kemampuan untuk menarik keberuntungan. Rezeki dan peluang baru mulai mendekat.";
         }
+
         else if(tanggal <= 20){
+
             kartu = "The Moon";
+
             arti = "Intuisi kamu sangat kuat. Ada rahasia atau perubahan emosional yang perlu dipahami dengan hati tenang.";
         }
+
         else{
+
             kartu = "Death Card";
+
             arti = "Melambangkan perubahan besar dan awal kehidupan baru. Tinggalkan masa lalu dan mulai langkah baru.";
         }
-
     }
 
     if(bulanDipilih === "November"){
 
         if(tanggal <= 10){
+
             kartu = "The Emperor";
+
             arti = "Kamu memiliki jiwa pemimpin yang kuat. Cocok membangun masa depan dan kestabilan finansial.";
         }
+
         else if(tanggal <= 20){
+
             kartu = "Wheel of Fortune";
+
             arti = "Keberuntungan sedang mendekat. Akan ada peluang besar dalam karier dan hubungan.";
         }
+
         else{
+
             kartu = "The Star";
+
             arti = "Harapan dan energi positif sedang menyertai hidupmu. Tetap percaya pada impianmu.";
         }
-
     }
 
     const hasil = document.getElementById("hasil");
@@ -308,28 +330,29 @@ function lihatRamalan(){
     hasil.innerHTML = `
         <div class="tarot-title">${kartu}</div>
 
-        <b>Bulan:</b> ${bulanDipilih}<br>
-        <b>Tanggal:</b> ${tanggal}<br><br>
+        <b>📅 Bulan:</b> ${bulanDipilih}<br>
+        <b>🎂 Tanggal:</b> ${tanggal}<br><br>
 
         ${arti}
     `;
 }
+
 function shareWeb(){
 
     if(navigator.share){
 
         navigator.share({
             title: 'Tarot Scorpio',
-            text: 'Cek ramalan tarot Scorpio Oktober & November di sini',
+            text: 'Cek ramalan tarot Scorpio Oktober & November di sini 🔮',
             url: window.location.href
         });
 
     } else {
 
         alert("Browser kamu tidak mendukung fitur share");
-
     }
 }
+
 </script>
 
 </body>
