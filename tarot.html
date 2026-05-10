@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarot Oktober November</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(180deg,#0f172a,#111827,#1e293b);
+    min-height:100vh;
+    color:white;
+    padding:20px;
+}
+
+.container{
+    max-width:420px;
+    margin:auto;
+}
+
+.header{
+    text-align:center;
+    margin-top:25px;
+}
+
+.logo{
+    width:90px;
+    height:90px;
+    object-fit:cover;
+    border-radius:50%;
+    border:3px solid #facc15;
+    box-shadow:0 0 20px rgba(250,204,21,0.7);
+    margin-bottom:15px;
+}
+
+.header h1{
+    color:#facc15;
+    font-size:30px;
+    text-shadow:0 0 12px #facc15;
+}
+
+.header p{
+    color:#cbd5e1;
+    margin-top:10px;
+    font-size:14px;
+}
+
+.card{
+    margin-top:25px;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:25px;
+    padding:20px;
+    backdrop-filter:blur(12px);
+    box-shadow:0 0 25px rgba(0,0,0,0.4);
+}
+
+.month-buttons{
+    display:flex;
+    gap:12px;
+}
+
+.month-buttons button{
+    flex:1;
+    padding:15px;
+    border:none;
+    border-radius:18px;
+    background:#facc15;
+    color:#111827;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.month-buttons button:hover{
+    transform:scale(1.04);
+}
+
+#tanggalSection{
+    display:none;
+    margin-top:20px;
+    animation:fade 0.4s ease;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+label{
+    display:block;
+    margin-bottom:10px;
+    color:#f8fafc;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:15px;
+    outline:none;
+    font-size:16px;
+}
+
+#lihatBtn{
+    width:100%;
+    margin-top:15px;
+    padding:15px;
+    border:none;
+    border-radius:15px;
+    background:#22c55e;
+    color:white;
+    font-weight:bold;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.result{
+    margin-top:25px;
+    background:rgba(255,255,255,0.08);
+    border-radius:20px;
+    padding:20px;
+    line-height:1.8;
+    display:none;
+}
+
+.tarot-title{
+    font-size:24px;
+    color:#facc15;
+    margin-bottom:12px;
+    font-weight:bold;
+}
+
+.donasi-btn{
+    display:block;
+    margin-top:25px;
+    text-align:center;
+    background:#3b82f6;
+    color:white;
+    text-decoration:none;
+    padding:15px;
+    border-radius:18px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.donasi-btn:hover{
+    transform:scale(1.03);
+}
+
+.dana-box{
+    margin-top:12px;
+    background:rgba(255,255,255,0.08);
+    padding:14px;
+    border-radius:15px;
+    text-align:center;
+    font-size:18px;
+    color:#facc15;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.footer{
+    text-align:center;
+    margin-top:30px;
+    color:#94a3b8;
+    font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <!-- GANTI logo.png dengan nama file logo kamu -->
+        <img src="logo.png" class="logo">
+
+        <h1>TAROT SCORPIO</h1>
+        <p>Ramalan Tarot Berdasarkan Tanggal Lahir</p>
+    </div>
+
+    <div class="card">
+
+        <div class="month-buttons">
+            <button onclick="pilihBulan('Oktober')">Oktober</button>
+            <button onclick="pilihBulan('November')">November</button>
+        </div>
+
+        <div id="tanggalSection">
+            <label>Masukkan Tanggal Lahir</label>
+            <input type="number" id="tanggal" placeholder="Contoh: 12">
+
+            <button id="lihatBtn" onclick="lihatRamalan()">
+                Lihat Ramalan
+            </button>
+        </div>
+
+        <div class="result" id="hasil"></div>
+
+    </div>
+
+    <!-- BUTTON DANA -->
+    <a href="https://link.dana.id/qr/089513237203"
+       class="donasi-btn"
+       target="_blank">
+       💛 Donasi via DANA
+    </a>
+
+    <!-- NOMOR DANA -->
+    <div class="dana-box">
+        DANA : 0895-1323-7203
+    </div>
+
+  
+    </a>
+
+    <div class="footer">
+        © 2026 MarKie Webing Tarot
+    </div>
+
+</div>
+
+<script>
+
+let bulanDipilih = "";
+
+function pilihBulan(bulan){
+    bulanDipilih = bulan;
+
+    document.getElementById("tanggalSection").style.display = "block";
+
+    document.getElementById("hasil").style.display = "none";
+
+    document.getElementById("tanggal").value = "";
+}
+
+function lihatRamalan(){
+
+    const tanggal = parseInt(document.getElementById("tanggal").value);
+
+    if(!tanggal || tanggal < 1 || tanggal > 31){
+        alert("Masukkan tanggal lahir yang valid");
+        return;
+    }
+
+    let kartu = "";
+    let arti = "";
+
+    if(bulanDipilih === "Oktober"){
+
+        if(tanggal <= 10){
+            kartu = "The Magician";
+            arti = "Kamu memiliki energi besar dan kemampuan untuk menarik keberuntungan. Rezeki dan peluang baru mulai mendekat.";
+        }
+        else if(tanggal <= 20){
+            kartu = "The Moon";
+            arti = "Intuisi kamu sangat kuat. Ada rahasia atau perubahan emosional yang perlu dipahami dengan hati tenang.";
+        }
+        else{
+            kartu = "Death Card";
+            arti = "Melambangkan perubahan besar dan awal kehidupan baru. Tinggalkan masa lalu dan mulai langkah baru.";
+        }
+
+    }
+
+    if(bulanDipilih === "November"){
+
+        if(tanggal <= 10){
+            kartu = "The Emperor";
+            arti = "Kamu memiliki jiwa pemimpin yang kuat. Cocok membangun masa depan dan kestabilan finansial.";
+        }
+        else if(tanggal <= 20){
+            kartu = "Wheel of Fortune";
+            arti = "Keberuntungan sedang mendekat. Akan ada peluang besar dalam karier dan hubungan.";
+        }
+        else{
+            kartu = "The Star";
+            arti = "Harapan dan energi positif sedang menyertai hidupmu. Tetap percaya pada impianmu.";
+        }
+
+    }
+
+    const hasil = document.getElementById("hasil");
+
+    hasil.style.display = "block";
+
+    hasil.innerHTML = `
+        <div class="tarot-title">${kartu}</div>
+
+        <b>📅 Bulan:</b> ${bulanDipilih}<br>
+        <b>🎂 Tanggal:</b> ${tanggal}<br><br>
+
+        ${arti}
+    `;
+}
+
+</script>
+
+</body>
+</html>
