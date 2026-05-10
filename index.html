@@ -172,6 +172,10 @@ input{
     color:#facc15;
     font-weight:bold;
     letter-spacing:1px;
+    <!-- BUTTON SHARE -->
+<button class="donasi-btn" onclick="shareWeb()" style="background:#ec4899;">
+    📤 Share Website
+</button>
 }
 
 .footer{
@@ -310,7 +314,22 @@ function lihatRamalan(){
         ${arti}
     `;
 }
+function shareWeb(){
 
+    if(navigator.share){
+
+        navigator.share({
+            title: 'Tarot Scorpio',
+            text: 'Cek ramalan tarot Scorpio Oktober & November di sini 🔮',
+            url: window.location.href
+        });
+
+    } else {
+
+        alert("Browser kamu tidak mendukung fitur share");
+
+    }
+}
 </script>
 
 </body>
